@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Angualr Js samples"/>
+    <base href="/"/>  
+    <link rel='stylesheet' href='/angular/angular-csp.css'/>
+    <style>
+      .active { color: red; font-weight: bold; }
+    </style>
+    <title>angular</title>
+  </head>
+  <body ng-app="app" class="ng-cloak">
+      <a ui-sref="hello" ui-sref-active="active">Hello</a>
+      <a ui-sref="about" ui-sref-active="active">About</a>
+      <ui-view></ui-view>
+      <script charset="utf-8" type="text/javascript" src="/angular/angular.min.js"></script>
+      <script charset="utf-8" type="text/javascript" src="/angular-ui-router/release/angular-ui-router.min.js"></script>
+      <script charset="utf-8" type="text/javascript" src="app.js"></script>
+  </body>
+</html>
