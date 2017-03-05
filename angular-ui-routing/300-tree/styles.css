@@ -1,0 +1,14 @@
+body {
+    font-family: Arial, helvetica, sans-serif;
+}
+
+.active {
+    color: red;
+    font-weight: bold;
+}
+
+.flex-h {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+}
