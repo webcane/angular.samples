@@ -13,7 +13,7 @@
     var aboutState = {
       name: 'about',
       url: '/about',
-      template: '<h3>It's about the UI-Router!</h3>'
+      template: '<h3>It\'s about the UI-Router!</h3>'
     }
     $stateProvider.state(helloState);
     $stateProvider.state(aboutState);
