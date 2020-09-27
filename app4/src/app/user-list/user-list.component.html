@@ -1,0 +1,7 @@
+<div class="card-container">
+  <ng-template ngFor let-user [ngForOf]="users">
+    <div class="card card-small" (click)="selectUser(user)" tabindex="0">
+      <span>{{user.name}}</span>
+    </div>
+  </ng-template>
+</div>

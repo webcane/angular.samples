@@ -1,0 +1,16 @@
+<app-header></app-header>
+
+<div class="content" role="main">
+
+  <h2>Users</h2>
+  <p>Select a user:</p>
+  <app-user-list (userSelected)="selectUser($event)"></app-user-list>
+
+  <!-- Terminal -->
+  <div class="terminal">
+      <pre>{{selectedUser?.name}}</pre>
+  </div>
+</div>
+
+
+
