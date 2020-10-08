@@ -11,7 +11,11 @@ import { Subscription } from 'rxjs';
 })
 export class SimpleFormComponent implements OnInit, OnDestroy {
 
-  nameInput = new FormControl('');
+  value = '';
+  isValid = false;
+  name$: Subscription;
+
+  nameInput = new FormControl('', Validators.required);
 
   constructor() {
   }
@@ -19,10 +23,25 @@ export class SimpleFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     console.log('ngOnInit');
 
+    this.isValid = this.nameInput.valid;
+
+    this.name$ = this.nameInput.valueChanges
+    .pipe(tap(() => { this.isValid = false; }))
+    .pipe(debounceTime(1000))
+    .subscribe((po) => {
+      this.isValid = true;
+      console.log(po);
+      this.value = po;
+    });
   }
 
   ngOnDestroy(): void {
     console.log('ngOnDestroy');
+    
+    if (this.name$) {
+      this.name$.unsubscribe();
+      this.name$ = null;
+    }
   }
 
   updateName(): void {
