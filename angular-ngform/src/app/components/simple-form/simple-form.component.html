@@ -1,7 +1,8 @@
-<h1>Reactive Forms</h1>
+<h1 [style.color]="inputColor">Reactive Forms</h1>
 
 <label>
-  Name: <input type="text" [formControl]="nameInput">
+  Name: <input type="text" [formControl]="nameInput" 
+    (keydown.control.enter)="changeColor($event.target.value)">
 </label>
 <p>
   <button (click)="updateName()">Update Name</button>

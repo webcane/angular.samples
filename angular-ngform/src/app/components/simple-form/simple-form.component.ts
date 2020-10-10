@@ -17,6 +17,8 @@ export class SimpleFormComponent implements OnInit, OnDestroy {
 
   nameInput = new FormControl('', Validators.required);
 
+  inputColor = 'red';
+
   constructor() {
   }
 
@@ -46,6 +48,10 @@ export class SimpleFormComponent implements OnInit, OnDestroy {
 
   updateName(): void {
     this.nameInput.setValue('Nancy');
+  }
+
+  changeColor(color): void {
+    this.inputColor = color;
   }
 
 }
