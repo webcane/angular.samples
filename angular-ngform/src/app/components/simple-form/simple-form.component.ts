@@ -14,8 +14,8 @@ export class SimpleFormComponent implements OnInit, OnDestroy {
   value = '';
   valueColor = 'red';
 
-  isValid = false;
-
+  disableButtons = false;
+  
   name$: Subscription;
   nameInput = new FormControl('', Validators.required);
 
@@ -25,13 +25,13 @@ export class SimpleFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     console.log('ngOnInit');
 
-    this.isValid = this.nameInput.valid;
+    this.disableButtons = !this.nameInput.valid;
 
     this.name$ = this.nameInput.valueChanges
-    .pipe(tap(() => { this.isValid = false; }))
+    .pipe(tap(() => { this.disableButtons = true; }))
     .pipe(debounceTime(1000))
     .subscribe((po) => {
-      this.isValid = true;
+      this.disableButtons = false;
       console.log(po);
       this.value = po;
     });

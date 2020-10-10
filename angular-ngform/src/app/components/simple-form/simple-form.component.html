@@ -4,8 +4,8 @@
   Name: <input type="text" [formControl]="nameInput" #colorElement>
 </label>
 <p>
-  <button (click)="updateName()">Update Name</button>
-  <button (click)="changeColor(colorElement.value)">Update color</button>
+  <button (click)="updateName()" [disabled]="disableButtons">Update Name</button>
+  <button (click)="changeColor(colorElement.value)" [disabled]="disableButtons">Update color</button>
 </p>
 <p [style.color]="valueColor">
   Value: {{ nameInput.value }}
