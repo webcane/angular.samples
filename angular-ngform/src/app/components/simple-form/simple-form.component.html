@@ -1,13 +1,12 @@
-<h1 [style.color]="inputColor">Reactive Forms</h1>
+<h1>Reactive Forms</h1>
 
 <label>
-  Name: <input type="text" [formControl]="nameInput" 
-    (keydown.control.enter)="changeColor($event.target.value)">
+  Name: <input type="text" [formControl]="nameInput" #colorElement>
 </label>
 <p>
   <button (click)="updateName()">Update Name</button>
+  <button (click)="changeColor(colorElement.value)">Update color</button>
 </p>
-
-<p>
+<p [style.color]="valueColor">
   Value: {{ nameInput.value }}
 </p>

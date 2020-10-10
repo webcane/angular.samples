@@ -12,12 +12,12 @@ import { Subscription } from 'rxjs';
 export class SimpleFormComponent implements OnInit, OnDestroy {
 
   value = '';
+  valueColor = 'red';
+
   isValid = false;
+
   name$: Subscription;
-
   nameInput = new FormControl('', Validators.required);
-
-  inputColor = 'red';
 
   constructor() {
   }
@@ -47,11 +47,11 @@ export class SimpleFormComponent implements OnInit, OnDestroy {
   }
 
   updateName(): void {
-    this.nameInput.setValue('Nancy');
+    this.nameInput.setValue('red');
   }
 
-  changeColor(color): void {
-    this.inputColor = color;
+  changeColor(color: string): void {
+    this.valueColor = color;
   }
 
 }
