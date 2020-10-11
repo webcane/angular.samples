@@ -6,6 +6,11 @@
   <li appColorElement [id]='num'>element {{num}}</li>
 </ul>
 
+<br/>
+<div appColorElement #colEl="colorDir">element</div>
+<br/>
+<button (click)="colEl.changeColor()">Update Color</button>
+
 <hr/>
 <h3>structural directive</h3>
 <ul *ngFor="let num of [1,2,3]">
@@ -13,7 +18,7 @@
 </ul>
 
 <ul *ngFor="let num of [4,5,6]">
-  <ng-template [appDelayElement]='num'> // view container
-    <li>element {{num}}</li> // template
+  <ng-template [appDelayElement]='num'> 
+    <li>element {{num}}</li>
   </ng-template>
 </ul>

@@ -1,7 +1,8 @@
 import { Directive, HostBinding, HostListener, Input } from '@angular/core';
 
 @Directive({
-  selector: '[appColorElement]'
+  selector: '[appColorElement]',
+  exportAs: 'colorDir'
 })
 export class ColorElementDirective {
 
@@ -12,7 +13,11 @@ export class ColorElementDirective {
   @HostBinding('style.color') color: string;
 
   @HostListener('click', ['$event']) changeColor(event) {
-    this.color = '#' + Math.floor(Math.random() * 16777216).toString(16);
+    this.setRandomColor();
     console.log('%d. %s (%d)', this.id, this.color, ++this.changeCount);
+  }
+
+  setRandomColor(): void {
+    this.color = '#' + Math.floor(Math.random() * 16777216).toString(16);
   }
 }
