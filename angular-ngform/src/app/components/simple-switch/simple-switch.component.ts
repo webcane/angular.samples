@@ -1,4 +1,3 @@
-import { typeWithParameters } from '@angular/compiler/src/render3/util';
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -18,9 +17,8 @@ export const SIMPLE_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 })
 export class SimpleSwitchComponent implements ControlValueAccessor {
 
-  // private value: boolean;
-  @Input() isChecked = false;
-
+  checked = false;
+  disabled = false;
 
   private propagateChange: (_: any) => void = noop;
   private propagateTouch: () => void = noop;
@@ -28,17 +26,22 @@ export class SimpleSwitchComponent implements ControlValueAccessor {
   constructor() { }
 
   get value() {
-    return this.isChecked;
+    return this.checked;
   }
 
   set value(val: boolean) {
-    this.isChecked = val;
+    this.checked = val;
   }
 
   writeValue(options: any): void {
-    if (options.value !== this.isChecked) {
-      // set default value
-      this.isChecked = options.value;
+    // set default value
+
+    if (options.checked !== this.checked) {
+      this.checked = options.checked;
+    }
+
+    if (options.disabled !== this.disabled) {
+      this.disabled = options.disabled;
     }
   }
 
@@ -51,7 +54,8 @@ export class SimpleSwitchComponent implements ControlValueAccessor {
   }
 
   setDisabledState?(isDisabled: boolean): void {
-    // throw new Error('Method not implemented.');
+    this.disabled = isDisabled;
+    this.propagateTouch();
   }
 
   onChange(event: any) {

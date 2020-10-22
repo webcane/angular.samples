@@ -11,16 +11,28 @@ export class AppComponent implements OnInit {
   title = 'Start editing to see some magic happen :)';
 
   switchControl: FormControl;
+  disabledSwitch: boolean;
 
   constructor() {
     this.switchControl = new FormControl({
-      value: false
+      checked: false,
+      disabled: false
     });
+    this.disabledSwitch = false;
   }
 
   ngOnInit(): void {
     this.switchControl.valueChanges.subscribe((value) => {
       console.log(value);
     });
+  }
+
+  disableSwitch(): void {
+    this.disabledSwitch = !this.disabledSwitch;
+    if (this.disabledSwitch) {
+      this.switchControl.disable();
+    } else {
+      this.switchControl.enable();
+    }
   }
 }
