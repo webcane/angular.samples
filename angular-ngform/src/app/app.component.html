@@ -1,1 +1,20 @@
 <app-simple-form-component></app-simple-form-component>
+
+<br />
+<br />
+<br />
+
+<app-simple-switch [formControl]="switchControl"></app-simple-switch>
+<br />
+<div>
+    <span *ngIf="switchControl.value === true">Switched On</span>
+    <span *ngIf="switchControl.value === false">Switched Off</span>
+</div>
+<br />
+<button (click)="disableSwitch()">disable switch</button>
+<br />
+<div>
+    <span *ngIf="disabledSwitch === true">disabled switch</span>
+    <span *ngIf="disabledSwitch === false">enabled switch</span>
+</div>
+  

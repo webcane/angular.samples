@@ -13,7 +13,8 @@ export class SimpleFormComponent implements OnInit, OnDestroy {
 
   value = '';
   isValid = false;
-  name$: Subscription;
+  nameValue$: Subscription;
+  nameStatus$: Subscription;
 
   nameInput = new FormControl('', Validators.required);
 
@@ -25,7 +26,7 @@ export class SimpleFormComponent implements OnInit, OnDestroy {
 
     this.isValid = this.nameInput.valid;
 
-    this.name$ = this.nameInput.valueChanges
+    this.nameValue$ = this.nameInput.valueChanges
     .pipe(tap(() => { this.isValid = false; }))
     .pipe(debounceTime(1000))
     .subscribe((po) => {
@@ -33,14 +34,25 @@ export class SimpleFormComponent implements OnInit, OnDestroy {
       console.log(po);
       this.value = po;
     });
+
+    console.log("original status: %s", this.nameInput.status);
+    
+    this.nameStatus$ =  this.nameInput.statusChanges.subscribe(status => {
+      console.log("status: %s", status);
+    });
   }
 
   ngOnDestroy(): void {
     console.log('ngOnDestroy');
     
-    if (this.name$) {
-      this.name$.unsubscribe();
-      this.name$ = null;
+    if (this.nameValue$) {
+      this.nameValue$.unsubscribe();
+      this.nameValue$ = null;
+    }
+
+    if(this.nameStatus$) {
+      this.nameStatus$.unsubscribe();
+      this.nameStatus$ = null;
     }
   }
 

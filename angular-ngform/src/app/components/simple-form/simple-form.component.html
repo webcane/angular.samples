@@ -4,9 +4,9 @@
   Name: <input type="text" [formControl]="nameInput">
 </label>
 <p>
-  <button (click)="updateName()">Update Name</button>
+  <button (click)="updateName()" [disabled]="!isValid">Update Name</button>
 </p>
 
 <p>
-  Value: {{ nameInput.value }}
+  Value: {{ value }}
 </p>
